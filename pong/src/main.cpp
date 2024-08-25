@@ -1,7 +1,18 @@
-#include <iostream>
+#include "pong.hpp"
 
 int main(int argc, char *argv[])
 {
-    std::cout << "hello" << std::endl;
+    game::Pong pong;
+    pong.start();
+
+    bool isRunning = true;
+    while (isRunning)
+    {
+        isRunning = pong.update();
+        pong.render();
+    };
+    
+    pong.exit();
+
     return 0;
 }
