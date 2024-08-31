@@ -1,9 +1,12 @@
 #include "pong.hpp"
+#include "SFML/Graphics/RenderWindow.hpp"
+#include "SFML/Window/VideoMode.hpp"
+#include "SFML/Window/WindowStyle.hpp"
 
 namespace game
 {
 
-Pong::Pong()
+Pong::Pong() : videoMode(800, 600), window(sf::VideoMode(videoMode), "Pong Game", sf::Style::Default)
 {
     // Constructor implementation
 }
@@ -15,20 +18,29 @@ Pong::~Pong()
 
 void Pong::start()
 {
-    // get video mode
-    // create window object
 }
 
 bool Pong::update()
 {
-    // clear GUI event loop
-    // Update the game state
-    return false;
+    while (window.isOpen())
+    {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+            {
+                window.close();
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
 void Pong::render()
 {
-    // Render the game
+    window.clear();
+    window.display();
 }
 
 void Pong::exit()
@@ -37,4 +49,3 @@ void Pong::exit()
 }
 
 } // namespace game
-
