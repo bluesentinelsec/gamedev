@@ -15,11 +15,13 @@ Pong::~Pong()
 
 void Pong::start()
 {
-    // Start the game
+    // get video mode
+    // create window object
 }
 
 bool Pong::update()
 {
+    // clear GUI event loop
     // Update the game state
     return false;
 }
