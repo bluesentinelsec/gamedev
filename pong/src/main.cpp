@@ -9,7 +9,6 @@ int main(int argc, char *argv[])
     while (isRunning)
     {
         isRunning = pong.update();
-        pong.render();
     };
     
     pong.exit();

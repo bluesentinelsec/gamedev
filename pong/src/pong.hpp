@@ -3,6 +3,7 @@
 #include "SFML/Graphics/RenderWindow.hpp"
 #include "SFML/Window/VideoMode.hpp"
 #include <SFML/Graphics.hpp>
+#include <memory>
 
 namespace game
 {
@@ -15,12 +16,12 @@ class Pong
 
     void start();
     bool update();
-    void render();
     void exit();
 
   private:
+    void render();
     sf::VideoMode videoMode;
-    sf::RenderWindow window;
+    std::unique_ptr<sf::RenderWindow> window;
 };
 
 } // namespace game
