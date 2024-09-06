@@ -1,5 +1,7 @@
 #pragma once
 
+#include "logger.hpp"
+
 #include "SFML/Graphics/RenderWindow.hpp"
 #include "SFML/Window/VideoMode.hpp"
 #include <SFML/Graphics.hpp>
@@ -17,6 +19,8 @@ class Pong
     void start();
     bool update();
     void exit();
+    int ScreenHeight = 320;
+    int ScreenWidth = 180;
 
   private:
     void render();

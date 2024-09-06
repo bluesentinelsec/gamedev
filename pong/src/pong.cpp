@@ -3,18 +3,20 @@
 #include "SFML/Window/VideoMode.hpp"
 #include "SFML/Window/WindowStyle.hpp"
 #include <memory>
-#include <iostream>
 
 namespace game
 {
 
 Pong::Pong()
 {
+    LOG_DEBUG("initializing video mode");
     videoMode = sf::VideoMode(sf::VideoMode::getDesktopMode());
     sf::ContextSettings settings;
     settings.antialiasingLevel = 0; // disable anti-aliasing
+
+    LOG_DEBUG("creating game window");
     window = std::make_unique<sf::RenderWindow>(videoMode, "Pong", sf::Style::Default | sf::Style::Resize, settings);
-    sf::View logicalView(sf::FloatRect(0, 0, 426, 240));
+    sf::View logicalView(sf::FloatRect(0, 0, ScreenWidth, ScreenHeight));
     window->setView(logicalView);
     window->setVerticalSyncEnabled(true);
     window->setFramerateLimit(60);
@@ -26,6 +28,7 @@ Pong::~Pong()
 
 void Pong::start()
 {
+    LOG_DEBUG("starting game");
 }
 
 bool Pong::update()
@@ -43,7 +46,7 @@ bool Pong::update()
             if (event.type == sf::Event::Resized)
             {
                 // Adjust the view to maintain the logical resolution
-                sf::FloatRect visibleArea(0, 0, 426, 240);
+                sf::FloatRect visibleArea(0, 0, ScreenWidth, ScreenHeight);
                 window->setView(sf::View(visibleArea));
             }
 
@@ -71,6 +74,7 @@ void Pong::render()
 
 void Pong::exit()
 {
+    LOG_DEBUG("exiting game");
     window->close();
 }
 

@@ -1,5 +1,13 @@
 .PHONY: build
 
+dev:
+	cmake -B build -S . -DCMAKE_EXPORT_COMPILE_COMMANDS=ON 
+	cmake --build build
+
+run: dev
+	cd build && ./Pong
+
+
 release_macos_arm64: clean
 	cmake -B build -S . -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Release
 	cmake --build build
@@ -12,7 +20,7 @@ release_macos_arm64: clean
 	cp lib/macos/arm64/libsfml-window.2.6.1.dylib build/Pong.app/Contents/Frameworks/
 	cp lib/macos/arm64/libsfml-audio.2.6.1.dylib build/Pong.app/Contents/Frameworks/
 	cp lib/macos/arm64/libsfml-network.2.6.1.dylib build/Pong.app/Contents/Frameworks/
-	#./scripts/sign.sh
+	./scripts/sign.sh
 
 clean:
 	rm -rf build
