@@ -38,6 +38,8 @@ if (CMAKE_BUILD_TYPE MATCHES "Release")
                 ARCHIVE DESTINATION "lib/static"
         )
 
+        set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -rpath @loader_path/Frameworks")
+        
         include(CPack)
         set(CPACK_PACKAGE_NAME "${PROJECT_NAME}")
         set(CPACK_PACKAGE_VERSION "${PROJECT_VERSION}")
