@@ -3,9 +3,9 @@ cmake_minimum_required(VERSION 3.10)
 project(Pong VERSION 1.0)
 set(CMAKE_CXX_STANDARD 17)
 
-if (CMAKE_BUILD_TYPE MATCHES "Release")
+if (CMAKE_BUILD_TYPE MATCHES "Pong_Release") # Can't use 'Release' because it breaks the SFML build
     message(WARNING "Building for release")
-    add_definitions(-DRelease)
+    add_definitions(-DPong_Release)
 else ()
     message(STATUS "Building for development")
     file(COPY ${CMAKE_SOURCE_DIR}/media DESTINATION ${CMAKE_BINARY_DIR})
@@ -19,17 +19,17 @@ set(SOURCES
         src/pathutils.cpp
         src/logger.hpp
 )
-if (CMAKE_BUILD_TYPE MATCHES "Release")
+if (CMAKE_BUILD_TYPE MATCHES "Pong_Release")
     add_executable(Pong MACOSX_BUNDLE ${SOURCES})
 else ()
     add_executable(Pong ${SOURCES})
 endif ()
 
 
-find_package(SFML COMPONENTS system window graphics CONFIG REQUIRED)
+add_subdirectory(external/SFML-2.6.x)
 target_link_libraries(Pong PRIVATE sfml-system sfml-network sfml-graphics sfml-window)
 
-if (CMAKE_BUILD_TYPE MATCHES "Release")
+if (CMAKE_BUILD_TYPE MATCHES "Pong_Release")
     if (APPLE)
         install(TARGETS Pong
                 BUNDLE DESTINATION "."
@@ -38,8 +38,9 @@ if (CMAKE_BUILD_TYPE MATCHES "Release")
                 ARCHIVE DESTINATION "lib/static"
         )
 
-        set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -rpath @loader_path/Frameworks")
-        
+        # needed so the macOS .app bundle can find dynamic libraries
+        set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -rpath @loader_path/../Frameworks")
+
         include(CPack)
         set(CPACK_PACKAGE_NAME "${PROJECT_NAME}")
         set(CPACK_PACKAGE_VERSION "${PROJECT_VERSION}")

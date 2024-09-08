@@ -19,8 +19,8 @@ class Pong
     void start();
     bool update();
     void exit();
-    int ScreenHeight = 320;
-    int ScreenWidth = 180;
+    int ScreenWidth = 320;
+    int ScreenHeight = 180;
 
   private:
     void render();

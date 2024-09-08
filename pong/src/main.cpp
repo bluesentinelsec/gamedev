@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 
 void initLogger()
 {
-#ifdef Release
+#ifdef Pong_Release
     logger::Logger::getInstance().setLogLevel(logger::LogLevel::INFO);
 #else
     logger::Logger::getInstance().setLogLevel(logger::LogLevel::DEBUG);

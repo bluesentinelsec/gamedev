@@ -1,0 +1,24 @@
+Building macOS app bundles is a pain; here is the basic process:
+
+1. Create the macOS .app folder structure
+
+MyApp.app/
+├── Contents/
+│   ├── Info.plist
+│   ├── MacOS/
+│   │   └── MyApp  # The executable file
+│   ├── Frameworks/
+│   │   └── (Frameworks and libraries used by the app)
+│   ├── Resources/
+│   │   ├── Icon.icns  # Application icon
+│   │   ├── (Other resources like images, sounds, etc.)
+
+2. Build your library deps from source
+
+3. Copy libraries to Frameworks folder
+
+4. Set the rpath
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -rpath @loader_path/Frameworks")
+
+5. Sign and notarize the app bundle
+    - see scripts/sign.sh

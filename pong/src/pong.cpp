@@ -9,13 +9,17 @@ namespace game
 
 Pong::Pong()
 {
-    LOG_DEBUG("initializing video mode");
-    videoMode = sf::VideoMode(sf::VideoMode::getDesktopMode());
     sf::ContextSettings settings;
     settings.antialiasingLevel = 0; // disable anti-aliasing
 
-    LOG_DEBUG("creating game window");
+    LOG_DEBUG("initializing video mode and game window");
+#ifdef Pong_Release
+    videoMode = sf::VideoMode(sf::VideoMode::getFullscreenModes()[0]);
+    window = std::make_unique<sf::RenderWindow>(videoMode, "Pong", sf::Style::Fullscreen, settings);
+#else
+    videoMode = sf::VideoMode(sf::VideoMode::getDesktopMode());
     window = std::make_unique<sf::RenderWindow>(videoMode, "Pong", sf::Style::Default | sf::Style::Resize, settings);
+#endif
     sf::View logicalView(sf::FloatRect(0, 0, ScreenWidth, ScreenHeight));
     window->setView(logicalView);
     window->setVerticalSyncEnabled(true);
