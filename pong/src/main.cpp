@@ -37,6 +37,8 @@ void initLogger()
  * TODO:
  * 1. Create a simple title screen (start and quit choices only)
  *      - Use Tiled to design it, but just implement it in code since its small
+ *      - Background: 0,0
+ *
  *
  * 2. Start the play screen:
  *      - add all entities to the screen

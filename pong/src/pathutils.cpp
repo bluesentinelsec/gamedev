@@ -15,7 +15,7 @@ void pathutils::InitFilesystem(char *argvZero)
 
 std::filesystem::path pathutils::getResourcePath(char *argvZero)
 {
-#if __APPLE__ && defined(Release)
+#if __APPLE__ && defined(Pong_Release)
     auto exePath = std::filesystem::canonical(std::filesystem::path(argvZero));
     auto resourcesPath = exePath.parent_path().parent_path() / "Resources";
     return resourcesPath;

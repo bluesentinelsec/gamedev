@@ -15,9 +15,11 @@ release_macos_arm64: clean
 	mkdir -p build/Pong.app/Contents/Resources/
 	cp media/macos/macos.entitlements build/
 	cp media/macos/Icon.icns build/Pong.app/Contents/Resources/Icon.icns
+	mkdir -p build/Pong.app/Contents/Resources/media
+	cp -r media/ build/Pong.app/Contents/Resources/media/
 	cp -R lib/SFML-2.6.1-macOS-clang-arm64/ build/Pong.app/Contents/Frameworks/
-	./scripts/sign.sh
-	cd build && sudo python3 -m http.server --bind 0.0.0.0 80
+	#./scripts/sign.sh
+	#cd build && sudo python3 -m http.server --bind 0.0.0.0 80
 
 clean:
 	rm -rf build

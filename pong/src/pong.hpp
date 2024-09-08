@@ -1,6 +1,8 @@
 #pragma once
 
 #include "logger.hpp"
+#include "sceneFactory.hpp"
+#include "sceneInterface.hpp"
 
 #include "SFML/Graphics/RenderWindow.hpp"
 #include "SFML/Window/VideoMode.hpp"
@@ -19,13 +21,13 @@ class Pong
     void start();
     bool update();
     void exit();
-    int ScreenWidth = 320;
-    int ScreenHeight = 180;
+    int ScreenWidth = 160;
+    int ScreenHeight = 144;
 
   private:
-    void render();
     sf::VideoMode videoMode;
-    std::unique_ptr<sf::RenderWindow> window;
+    std::shared_ptr<sf::RenderWindow> window;
+    std::shared_ptr<SceneInterface> currentScene = nullptr;
 };
 
 } // namespace game

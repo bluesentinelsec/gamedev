@@ -18,6 +18,10 @@ set(SOURCES
         src/pathutils.hpp
         src/pathutils.cpp
         src/logger.hpp
+        src/sceneInterface.hpp
+        src/titleScene.cpp
+        src/titleScene.hpp
+        src/sceneFactory.hpp
 )
 if (CMAKE_BUILD_TYPE MATCHES "Pong_Release")
     add_executable(Pong MACOSX_BUNDLE ${SOURCES})

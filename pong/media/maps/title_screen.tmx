@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="20" height="18" tilewidth="8" tileheight="8" infinite="0" nextlayerid="8" nextobjectid="8">
+ <tileset firstgid="1" source="cursor.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="20" height="18" locked="1">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <imagelayer id="2" name="background" locked="1">
+  <image source="../images/background_160x144.png" width="160" height="144"/>
+ </imagelayer>
+ <objectgroup id="3" name="text" locked="1">
+  <object id="4" name="title" x="29.0666" y="31.8823" width="122.904" height="28.3967">
+   <text fontfamily="Early GameBoy" pixelsize="28" color="#0f380f" kerning="0" valign="bottom">Pong</text>
+  </object>
+  <object id="5" name="start" x="52" y="85" width="59.2178" height="12.4752">
+   <text fontfamily="Early GameBoy" pixelsize="12" color="#0f380f" kerning="0" valign="bottom">Start</text>
+  </object>
+  <object id="6" name="exit" x="56" y="108" width="59.2178" height="12.4752">
+   <text fontfamily="Early GameBoy" pixelsize="12" color="#0f380f" kerning="0" valign="bottom">Exit</text>
+  </object>
+ </objectgroup>
+ <objectgroup id="7" name="cursor">
+  <object id="7" gid="1" x="39.9882" y="94.1606" width="8" height="8"/>
+ </objectgroup>
+</map>
