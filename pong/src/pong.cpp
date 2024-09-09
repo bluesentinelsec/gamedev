@@ -41,6 +41,8 @@ bool Pong::update()
     bool isRunning = true;
     while (window->isOpen())
     {
+        sf::Time deltaTime = clock.restart();
+
         sf::Event event{};
         while (window->pollEvent(event))
         {
@@ -48,18 +50,14 @@ bool Pong::update()
             {
                 isRunning = false;
             }
-            else if (event.type == sf::Event::Resized)
+            if (event.type == sf::Event::Resized)
             {
                 // Adjust the view to maintain the logical resolution
                 sf::FloatRect visibleArea(0, 0, ScreenWidth, ScreenHeight);
                 window->setView(sf::View(visibleArea));
             }
-            else
-            {
-                currentScene->HandleEvent(event);
-            }
         }
-        isRunning = currentScene->Update(0);
+        isRunning = currentScene->Update(deltaTime.asSeconds(), event);
         currentScene->Render(window);
 
         if (!isRunning)

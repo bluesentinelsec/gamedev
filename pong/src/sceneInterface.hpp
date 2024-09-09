@@ -16,17 +16,13 @@ class SceneInterface {
      */
     virtual bool Init() = 0;
 
-    /**
-     * @brief Handle events like key presses, mouse clicks, etc.
-     * @param event The SFML event to handle.
-     */
-    virtual void HandleEvent(const sf::Event& event) = 0;
+
 
     /**
      * @brief Update the game logic, called every frame.
      * @param deltaTime Time elapsed since last update in seconds.
      */
-    virtual bool Update(float deltaTime) = 0;
+    virtual bool Update(float deltaTime, const sf::Event& event) = 0;
 
     /**
      * @brief Render the scene, called after Update.

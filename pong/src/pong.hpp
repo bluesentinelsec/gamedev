@@ -28,6 +28,7 @@ class Pong
     sf::VideoMode videoMode;
     std::shared_ptr<sf::RenderWindow> window;
     std::shared_ptr<SceneInterface> currentScene = nullptr;
+    sf::Clock clock;
 };
 
 } // namespace game

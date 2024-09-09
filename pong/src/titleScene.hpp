@@ -17,11 +17,8 @@ class TitleScene : public SceneInterface {
     // Initialize the scene by loading assets, setting up initial state
     bool Init() override;
 
-    // Handle user input events
-    void HandleEvent(const sf::Event& event) override;
-
     // Update game logic
-    bool Update(float deltaTime) override;
+    bool Update(float deltaTime, const sf::Event& event) override;
 
     // Render the title scene
     void Render(std::shared_ptr<sf::RenderWindow> window) override;
@@ -29,12 +26,22 @@ class TitleScene : public SceneInterface {
   private:
     bool isRunning = true;
 
-    sf::Font titleFont;
+    sf::Font uiFont;
     sf::Text titleText;
-    sf::Font startFont;
+    int titleX = 51;
+    int titleY = 33;
+
     sf::Text startText;
-    sf::Font exitFont;
+    int startX = 63;
+    int startY = 77;
+
     sf::Text exitText;
+    int exitX = 67;
+    int exitY = 95;
+
+    float xPos = 0.0;
+    float yPos = 0.0;
+    int objSpeed = 100;
 };
 
 }  // namespace game
