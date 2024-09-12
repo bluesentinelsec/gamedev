@@ -35,6 +35,14 @@ game::TitleScene::TitleScene()
     exitText.setPosition(exitX, exitY);
 
     // create cursor object
+    auto cursorTexturePath = pathutils::WithResourcePath("media/images/cursor_8x8.png");
+    if (!cursorTexture.loadFromFile(cursorTexturePath))
+    {
+        LOG_FATAL("unable to load media file: %s\n", cursorTexturePath.c_str());
+    }
+    cursorTexture.setSmooth(false);
+    cursorSprite.setTexture(cursorTexture);
+    cursorSprite.setPosition(cursorStartX, cursorStartY);
 }
 
 bool game::TitleScene::Init()
@@ -67,7 +75,48 @@ bool game::TitleScene::Update(float deltaTime, const sf::Event &event)
     {
         yPos += 1 * objSpeed * deltaTime;
     }
-    //exitText.setPosition(xPos, yPos);
+    if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Down)
+    {
+        auto pos = cursorSprite.getPosition();
+        if (pos.x == cursorStartX && pos.y == cursorStartY)
+        {
+            cursorSprite.setPosition(cursorExitX, cursorExitY);
+        }
+        else
+        {
+            cursorSprite.setPosition(cursorStartX, cursorStartY);
+        }
+    }
+    if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Up)
+    {
+        auto pos = cursorSprite.getPosition();
+        if (pos.x == cursorStartX && pos.y == cursorStartY)
+        {
+            cursorSprite.setPosition(cursorExitX, cursorExitY);
+        }
+        else
+        {
+            cursorSprite.setPosition(cursorStartX, cursorStartY);
+        }
+    }
+    if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Enter)
+    {
+        auto pos = cursorSprite.getPosition();
+        if (pos.x == cursorStartX && pos.y == cursorStartY)
+        {
+            LOG_INFO("CREATE GAME SCENE");
+            // add a new function to the scene
+            // interface where the current scene
+            // returns an enum for the next scene
+            // that should load
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    //cursorSprite.setPosition(xPos, yPos);
     //LOG_INFO("Position: %.2f x %.2f", xPos, yPos);
     return isRunning;
 }
@@ -80,6 +129,7 @@ void game::TitleScene::Render(std::shared_ptr<sf::RenderWindow> window)
     window->draw(titleText);
     window->draw(startText);
     window->draw(exitText);
+    window->draw(cursorSprite);
 
     window->display();
 }

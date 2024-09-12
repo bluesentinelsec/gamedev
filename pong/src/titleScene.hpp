@@ -1,11 +1,12 @@
 #pragma once
 
-#include "sceneInterface.hpp"
+#include "SFML/Graphics/Sprite.hpp"
 #include "logger.hpp"
 #include "pathutils.hpp"
+#include "sceneInterface.hpp"
 
-#include <SFML/Graphics/Text.hpp>
 #include <SFML/Graphics/Font.hpp>
+#include <SFML/Graphics/Text.hpp>
 
 namespace game {
 
@@ -38,6 +39,13 @@ class TitleScene : public SceneInterface {
     sf::Text exitText;
     int exitX = 67;
     int exitY = 95;
+
+    sf::Texture cursorTexture;
+    sf::Sprite cursorSprite;
+    int cursorStartX = 52;
+    int cursorStartY = 77;
+    int cursorExitX = 57;
+    int cursorExitY = 96;
 
     float xPos = 0.0;
     float yPos = 0.0;

@@ -13,6 +13,7 @@ namespace game
 enum class SceneType
 {
     TitleScene,
+    GameplayScene,
     // [!] add additional scene types here
 };
 
