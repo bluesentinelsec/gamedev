@@ -51,7 +51,6 @@ bool game::TitleScene::Init()
     return true;
 }
 
-
 bool game::TitleScene::Update(float deltaTime, const sf::Event &event)
 {
     if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Escape)
@@ -105,10 +104,8 @@ bool game::TitleScene::Update(float deltaTime, const sf::Event &event)
         if (pos.x == cursorStartX && pos.y == cursorStartY)
         {
             LOG_INFO("CREATE GAME SCENE");
-            // add a new function to the scene
-            // interface where the current scene
-            // returns an enum for the next scene
-            // that should load
+            char *gameplayScene = "GAMEPLAY_SCENE";
+            EventHandler::getInstance().emit("CHANGE_SCENE", (void *)(gameplayScene));
         }
         else
         {
@@ -116,8 +113,8 @@ bool game::TitleScene::Update(float deltaTime, const sf::Event &event)
         }
     }
 
-    //cursorSprite.setPosition(xPos, yPos);
-    //LOG_INFO("Position: %.2f x %.2f", xPos, yPos);
+    // cursorSprite.setPosition(xPos, yPos);
+    // LOG_INFO("Position: %.2f x %.2f", xPos, yPos);
     return isRunning;
 }
 

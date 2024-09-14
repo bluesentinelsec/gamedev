@@ -1,10 +1,11 @@
 #pragma once
 
-#include "sceneInterface.hpp"
 #include "logger.hpp"
+#include "sceneInterface.hpp"
 #include <memory>
 
 // [!] Include concrete scene implementations here
+#include "gameplayScene.hpp"
 #include "titleScene.hpp"
 
 namespace game
@@ -26,7 +27,8 @@ class SceneFactory
         {
         case SceneType::TitleScene:
             return std::make_shared<TitleScene>();
-        // [!] Add cases for other scenes when implemented
+        case SceneType::GameplayScene:
+            return std::make_shared<GameplayScene>();
         default:
             LOG_FATAL("invalid type provided: %d\n", type);
             return nullptr;

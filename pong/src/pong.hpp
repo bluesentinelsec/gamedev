@@ -12,6 +12,8 @@
 namespace game
 {
 
+static std::shared_ptr<SceneInterface> currentScene = nullptr;
+
 class Pong
 {
   public:
@@ -27,7 +29,6 @@ class Pong
   private:
     sf::VideoMode videoMode;
     std::shared_ptr<sf::RenderWindow> window;
-    std::shared_ptr<SceneInterface> currentScene = nullptr;
     sf::Clock clock;
 };
 

@@ -6,6 +6,7 @@
 
 namespace game
 {
+void onChangeScene(void *args);
 
 Pong::Pong()
 {
@@ -16,6 +17,7 @@ Pong::Pong()
 #ifdef Pong_Release
     videoMode = sf::VideoMode(sf::VideoMode::getFullscreenModes()[0]);
     window = std::make_shared<sf::RenderWindow>(videoMode, "Pong", sf::Style::Fullscreen, settings);
+    window->setMouseCursorVisible(false);
 #else
     videoMode = sf::VideoMode(sf::VideoMode::getDesktopMode());
     window = std::make_shared<sf::RenderWindow>(videoMode, "Pong", sf::Style::Default | sf::Style::Resize, settings);
@@ -34,6 +36,11 @@ void Pong::start()
 {
     LOG_DEBUG("starting game");
     currentScene = SceneFactory::CreateScene(SceneType::TitleScene);
+
+    // subscribe to custom game events
+    EventHandler::getInstance().subscribe("CHANGE_SCENE", onChangeScene);
+    // TODO: change scene from title to gameplay
+    // TODO: change scene from gameplay to title
 }
 
 bool Pong::update()
@@ -68,11 +75,19 @@ bool Pong::update()
     return isRunning;
 }
 
-
 void Pong::exit()
 {
     LOG_DEBUG("exiting game");
     window->close();
+}
+
+void onChangeScene(void *args)
+{
+    std::string sceneToLoad = (char *)(args);
+    if (sceneToLoad == "GAMEPLAY_SCENE")
+    {
+        currentScene = SceneFactory::CreateScene(SceneType::GameplayScene);
+    }
 }
 
 } // namespace game

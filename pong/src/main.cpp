@@ -3,6 +3,8 @@
 #include "pathutils.hpp"
 #include "logger.hpp"
 
+#include <cstdlib>
+
 void initLogger();
 
 int main(int argc, char *argv[])
@@ -12,16 +14,10 @@ int main(int argc, char *argv[])
 
     game::Pong pong;
     pong.start();
-
-    bool isRunning = true;
-    while (isRunning)
-    {
-        isRunning = pong.update();
-    };
-    
+    pong.update();
     pong.exit();
 
-    return 0;
+    return EXIT_SUCCESS;
 }
 
 void initLogger()

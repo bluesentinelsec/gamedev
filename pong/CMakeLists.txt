@@ -22,6 +22,9 @@ set(SOURCES
         src/titleScene.cpp
         src/titleScene.hpp
         src/sceneFactory.hpp
+        src/customEventManager.hpp
+        src/gameplayScene.cpp
+        src/gameplayScene.hpp
 )
 if (CMAKE_BUILD_TYPE MATCHES "Pong_Release")
     add_executable(Pong MACOSX_BUNDLE ${SOURCES})
