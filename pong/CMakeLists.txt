@@ -25,6 +25,16 @@ set(SOURCES
         src/customEventManager.hpp
         src/gameplayScene.cpp
         src/gameplayScene.hpp
+        src/WinLoseScene.cpp
+        src/WinLoseScene.hpp
+        src/Player.cpp
+        src/Player.hpp
+        src/Opponent.cpp
+        src/Opponent.hpp
+        src/ball.cpp
+        src/ball.hpp
+        src/score.cpp
+        src/score.hpp
 )
 if (CMAKE_BUILD_TYPE MATCHES "Pong_Release")
     add_executable(Pong MACOSX_BUNDLE ${SOURCES})

@@ -41,7 +41,7 @@ void initLogger()
  *
  * 3. Write down the game rules.
  *
- * 4. Implement the game rules (player, ball, CPU, player score, CPU score)
+ * 4. Implement the game rules (Player, ball, CPU, Player score, CPU score)
  *
  * 5. Add 'you win/lose' message plus 'again or exit'
  *
