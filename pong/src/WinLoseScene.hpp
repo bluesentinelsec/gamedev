@@ -19,26 +19,26 @@ class WinLoseScene : public SceneInterface
     bool Init() override;
     bool Update(float deltaTime, const sf::Event &event) override;
     void Render(std::shared_ptr<sf::RenderWindow> window) override;
+    sf::Text winLoseText;
 
   private:
     sf::Font uiFont;
-    sf::Text titleText;
-    int titleX = 51;
-    int titleY = 33;
+    int titleX = 23;
+    int titleY = 29;
 
     sf::Text startText;
-    int startX = 63;
+    int startX = 41;
     int startY = 77;
 
     sf::Text exitText;
-    int exitX = 67;
+    int exitX = 63;
     int exitY = 95;
 
     sf::Texture cursorTexture;
     sf::Sprite cursorSprite;
-    int cursorStartX = 52;
+    int cursorStartX = 30;
     int cursorStartY = 77;
-    int cursorExitX = 57;
+    int cursorExitX = 52;
     int cursorExitY = 96;
 };
 

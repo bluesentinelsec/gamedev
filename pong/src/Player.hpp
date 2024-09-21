@@ -14,7 +14,7 @@ class Player
     const int height = 16;
     int xPos = width;
     int yPos = 64;
-    int speed = 10;
+    int speed = 100;
     sf::Color color{15, 56, 15, 255};
     const int screenWidth = 160;
     const int screenHeight = 144;

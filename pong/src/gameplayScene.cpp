@@ -17,15 +17,7 @@ bool game::GameplayScene::Init()
 bool game::GameplayScene::Update(float deltaTime, const sf::Event &event)
 {
     bool isRunning = true;
-    if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Escape)
-    {
-        LOG_DEBUG("ESCAPE PRESSED!");
-        isRunning = false;
-    }
-    if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Num1)
-    {
-        showYouWin = !showYouWin;
-    }
+    isRunning = handleInput(deltaTime, event);
 
     if (!isPaused)
     {
@@ -36,36 +28,57 @@ bool game::GameplayScene::Update(float deltaTime, const sf::Event &event)
         // update cpu score
     }
 
-    if (showYouWin)
+    // TODO - make the win/lose screen its own scene
+    return isRunning;
+}
+
+bool game::GameplayScene::handleInput(float deltaTime, const sf::Event &event)
+{
+    if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Escape)
     {
-        winScreen.Update(deltaTime, event);
-    }
-    if (showYouLose)
-    {
-        loseScreen.Update(deltaTime, event);
+        return false;
     }
 
-    return isRunning;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    {
+        auto pos = player.rect.getPosition();
+        player.rect.setPosition(pos.x, pos.y - 1 * player.speed * deltaTime);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    {
+        auto pos = player.rect.getPosition();
+        player.rect.setPosition(pos.x, pos.y + 1 * player.speed * deltaTime);
+    }
+    if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Enter)
+    {
+        isPaused = !isPaused;
+        // TODO: play a sound
+        // TODO: show a flashing message that says "PAUSED"
+    }
+    if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Num1)
+    {
+        char *winScene = "WIN_SCENE";
+        EventHandler::getInstance().emit("CHANGE_SCENE", (void *)(winScene));
+    }
+    if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Num2)
+    {
+        char *scene = "LOSE_SCENE";
+        EventHandler::getInstance().emit("CHANGE_SCENE", (void *)(scene));
+    }
+
+    return true;
 }
 
 void game::GameplayScene::Render(std::shared_ptr<sf::RenderWindow> window)
 {
     window->clear(sf::Color(155, 188, 15, 255));
+
     // draw actors
     window->draw(player.rect);
     window->draw(opponent.rect);
     window->draw(ball.ball);
     window->draw(playerScore.text);
     window->draw(opponentScore.text);
-
-    if (showYouWin)
-    {
-        winScreen.Render(window);
-    }
-    if (showYouLose)
-    {
-        loseScreen.Render(window);
-    }
 
     window->display();
 }

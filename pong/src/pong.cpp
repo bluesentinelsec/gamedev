@@ -36,11 +36,7 @@ void Pong::start()
 {
     LOG_DEBUG("starting game");
     currentScene = SceneFactory::CreateScene(SceneType::TitleScene);
-
-    // subscribe to custom game events
     EventHandler::getInstance().subscribe("CHANGE_SCENE", onChangeScene);
-    // TODO: change scene from title to gameplay
-    // TODO: change scene from gameplay to title
 }
 
 bool Pong::update()
@@ -87,6 +83,23 @@ void onChangeScene(void *args)
     if (sceneToLoad == "GAMEPLAY_SCENE")
     {
         currentScene = SceneFactory::CreateScene(SceneType::GameplayScene);
+    }
+    else if (sceneToLoad == "WIN_SCENE")
+    {
+        currentScene = SceneFactory::CreateScene(SceneType::WinScene);
+    }
+    else if (sceneToLoad == "TITLE_SCENE")
+    {
+        currentScene = SceneFactory::CreateScene(SceneType::TitleScene);
+    }
+    else if (sceneToLoad == "LOSE_SCENE")
+    {
+        currentScene = SceneFactory::CreateScene(SceneType::LoseScene);
+    }
+
+    else
+    {
+        LOG_FATAL("invalid scene: %s\n", sceneToLoad.c_str());
     }
 }
 

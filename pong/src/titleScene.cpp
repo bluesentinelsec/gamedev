@@ -113,8 +113,6 @@ bool game::TitleScene::Update(float deltaTime, const sf::Event &event)
         }
     }
 
-    // cursorSprite.setPosition(xPos, yPos);
-    // LOG_INFO("Position: %.2f x %.2f", xPos, yPos);
     return isRunning;
 }
 

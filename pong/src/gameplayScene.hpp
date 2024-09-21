@@ -5,7 +5,6 @@
 #include "SFML/Graphics/CircleShape.hpp"
 #include "SFML/Graphics/RectangleShape.hpp"
 #include "SFML/Graphics/Sprite.hpp"
-#include "WinLoseScene.hpp"
 #include "ball.hpp"
 #include "logger.hpp"
 #include "pathutils.hpp"
@@ -29,6 +28,8 @@ class GameplayScene : public SceneInterface
     void Render(std::shared_ptr<sf::RenderWindow> window) override;
 
   private:
+    bool handleInput(float deltaTime, const sf::Event &event);
+
     bool isPaused = false;
 
     // actors
@@ -41,8 +42,6 @@ class GameplayScene : public SceneInterface
     // win & lose screen elements
     bool showYouWin = false;
     bool showYouLose = false;
-    WinLoseScene winScreen;
-    WinLoseScene loseScreen;
 };
 
 } // namespace game
