@@ -2,7 +2,7 @@
 cmake-build-debug
 .DS_Store
 .cache
-build
+
 
 # Prerequisites
 *.d
