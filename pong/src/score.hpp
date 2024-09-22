@@ -13,9 +13,9 @@ class Score
 {
   public:
     Score();
-    sf::Font uiFont;
+    sf::Font font;
     sf::Text text;
-    sf::Color fontColor{15, 56, 15, 255};
+    sf::Color black{15, 56, 15, 255};
     void SetPosition(int x, int y);
     void SetText(std::string score);
 };

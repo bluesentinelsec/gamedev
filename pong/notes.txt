@@ -1,4 +1,28 @@
+Notes for next project:
+1. Need some global read-only constants for screen size
+2. Need to be able to run any scene from CLI
+3. Setup pause before working on gameplay programming
+4. Continue setting up scenes first; makes it easier to focus on gameplay code afterwards
+    - next time, add transitions
+5. Make sure every scene resets its state between creation
+6. Use larger resolutions for cleaner font rendering; get game to match Tiled display
+7. I think I'll go back to SDL2 and target web first
 
+Retrospective:
+- This project validated my workflow, which is essentially working backwards from the desired end state
+    1. setup your prod build first, then dev build
+    2. get key engine systems working correctly
+        - file I/O
+        - window and backbuffer
+        - input devices
+    3. create scene objects
+    4. get objects on screen
+    5. implement gameplay logic
+    6. fit and finish
+
+- What also helped was keeping the scope small
+    - we only targetted macOS
+    - we only supported keyboard controls
 
 Building macOS app bundles is a pain; here is the basic process:
 

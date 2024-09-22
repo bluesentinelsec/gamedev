@@ -45,12 +45,6 @@ game::TitleScene::TitleScene()
     cursorSprite.setPosition(cursorStartX, cursorStartY);
 }
 
-bool game::TitleScene::Init()
-{
-    LOG_DEBUG("Initializing title scene");
-    return true;
-}
-
 bool game::TitleScene::Update(float deltaTime, const sf::Event &event)
 {
     if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Escape)
@@ -104,8 +98,8 @@ bool game::TitleScene::Update(float deltaTime, const sf::Event &event)
         if (pos.x == cursorStartX && pos.y == cursorStartY)
         {
             LOG_INFO("CREATE GAME SCENE");
-            char *gameplayScene = "GAMEPLAY_SCENE";
-            EventHandler::getInstance().emit("CHANGE_SCENE", (void *)(gameplayScene));
+            std::string gameplayScene = "GAMEPLAY_SCENE";
+            EventHandler::getInstance().emit("CHANGE_SCENE", (void *)(gameplayScene.c_str()));
         }
         else
         {

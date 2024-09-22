@@ -16,7 +16,6 @@ class WinLoseScene : public SceneInterface
 {
   public:
     WinLoseScene();
-    bool Init() override;
     bool Update(float deltaTime, const sf::Event &event) override;
     void Render(std::shared_ptr<sf::RenderWindow> window) override;
     sf::Text winLoseText;

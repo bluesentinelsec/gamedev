@@ -14,7 +14,7 @@ class Opponent
     const int height = 16;
     int xPos = 160 - (width * 2);
     int yPos = 64;
-    int speed = 10;
+    int speed = 100;
     sf::Color color{15, 56, 15, 255};
 };
 

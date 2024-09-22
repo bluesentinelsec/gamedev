@@ -10,6 +10,8 @@
 #include "pathutils.hpp"
 #include "sceneInterface.hpp"
 #include "score.hpp"
+#include <cstdlib>
+#include <random>
 
 namespace game
 {
@@ -23,21 +25,34 @@ class GameplayScene : public SceneInterface
     GameplayScene();
     ~GameplayScene() override = default;
 
-    bool Init() override;
     bool Update(float deltaTime, const sf::Event &event) override;
     void Render(std::shared_ptr<sf::RenderWindow> window) override;
 
   private:
     bool handleInput(float deltaTime, const sf::Event &event);
+    void changeSceneOnVictory();
+    void checkIfScoreOccured();
 
     bool isPaused = false;
 
     // actors
     Player player;
     Opponent opponent;
+    void moveCPU(float deltaTime);
+
     Ball ball;
-    Score playerScore;
-    Score opponentScore;
+    bool isBallActive = true;
+    void spawnBall();
+    void moveBall(float deltaTime);
+    void handleCollisions();
+
+    Score playerScoreUI;
+    int pScore = 0;
+
+    Score opponentScoreUI;
+    int opScore = 0;
+
+    const int scoreToWin = 3;
 
     // win & lose screen elements
     bool showYouWin = false;

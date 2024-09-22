@@ -13,7 +13,9 @@ class Ball
     int ballX = 0;
     int ballY = 0;
     int ballRadius = 2;
-    int ballSpeed = 10;
+    int ballSpeed = 100;
+    sf::Vector2f velocity;
+    float angle;
     sf::Color ballColor{15, 56, 15, 255};
 };
 

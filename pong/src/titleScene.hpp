@@ -15,9 +15,6 @@ class TitleScene : public SceneInterface {
     TitleScene();
     ~TitleScene() override = default;
 
-    // Initialize the scene by loading assets, setting up initial state
-    bool Init() override;
-
     // Update game logic
     bool Update(float deltaTime, const sf::Event& event) override;
 

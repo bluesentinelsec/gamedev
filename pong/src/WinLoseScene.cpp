@@ -31,7 +31,7 @@ game::WinLoseScene::WinLoseScene()
 
     // create exit text
     exitText.setFont(uiFont);
-    exitText.setString("EXIT");
+    exitText.setString("RETURN");
     exitText.setCharacterSize(8);
     exitText.setFillColor(fontColor);
     exitText.setPosition(exitX, exitY);
@@ -47,10 +47,6 @@ game::WinLoseScene::WinLoseScene()
     cursorSprite.setPosition(cursorStartX, cursorStartY);
 }
 
-bool game::WinLoseScene::Init()
-{
-    return false;
-}
 bool game::WinLoseScene::Update(float deltaTime, const sf::Event &event)
 {
     if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Escape)
@@ -86,13 +82,13 @@ bool game::WinLoseScene::Update(float deltaTime, const sf::Event &event)
         auto pos = cursorSprite.getPosition();
         if (pos.x == cursorStartX && pos.y == cursorStartY)
         {
-            char *gameplayScene = "GAMEPLAY_SCENE";
-            EventHandler::getInstance().emit("CHANGE_SCENE", (void *)(gameplayScene));
+            std::string gameplayScene = "GAMEPLAY_SCENE";
+            EventHandler::getInstance().emit("CHANGE_SCENE", (void *)(gameplayScene.c_str()));
         }
         else
         {
-            char *gameplayScene = "TITLE_SCENE";
-            EventHandler::getInstance().emit("CHANGE_SCENE", (void *)(gameplayScene));
+            std::string gameplayScene = "TITLE_SCENE";
+            EventHandler::getInstance().emit("CHANGE_SCENE", (void *)(gameplayScene.c_str()));
         }
     }
 
