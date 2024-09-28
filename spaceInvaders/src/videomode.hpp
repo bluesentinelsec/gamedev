@@ -5,7 +5,12 @@
 #include <SDL_mixer.h>
 #include <SDL_ttf.h>
 
+#include "font.hpp"
 #include "globals.hpp"
+#include "music.hpp"
+#include "sound.hpp"
+#include "surface.hpp"
+#include "texture.hpp"
 
 namespace si
 {
@@ -20,5 +25,11 @@ class VideoMode
     SDL_Window *window = nullptr;
     SDL_Renderer *renderer = nullptr;
     bool isRunning = true;
+
+    sdlSurface backgroundSurf;
+    sdlTexture backgroundTex;
+    sdlFont uiFont;
+    Sound sound;
+    Music music;
 };
 }; // namespace si

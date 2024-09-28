@@ -23,6 +23,11 @@ set(SOURCES src/main.cpp
         src/videomode.cpp
         src/globals.hpp
         external/tileson/tileson.hpp
+        src/surface.hpp
+        src/texture.hpp
+        src/font.hpp
+        src/sound.hpp
+        src/music.hpp
 )
 add_executable(SpaceInvaders ${SOURCES})
 
@@ -36,3 +41,10 @@ target_link_libraries(SpaceInvaders PRIVATE
         SDL2_mixer::SDL2_mixer
         SDL2_ttf::SDL2_ttf
 )
+
+# Copy the media directory to the output directory
+add_custom_target(copy_media ALL
+        COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/media ${CMAKE_BINARY_DIR}/media
+        COMMENT "Copying media directory"
+)
+add_dependencies(SpaceInvaders copy_media)

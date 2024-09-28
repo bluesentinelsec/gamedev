@@ -8,13 +8,14 @@ si::VideoMode::VideoMode()
     SDL_DisplayMode mode;
     SDL_GetDesktopDisplayMode(0, &mode);
 
-    auto windowFlags = SDL_WINDOW_RESIZABLE;
+    auto windowFlags = SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI;
     window = SDL_CreateWindow("Space Invaders", 0, 0, mode.w, mode.h, windowFlags);
     SDL_assert(window != nullptr);
 
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED);
     SDL_assert(renderer != nullptr);
 
+    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
     ret = SDL_RenderSetLogicalSize(renderer, si::Globals::screenWidth, si::Globals::screenHeight);
     SDL_assert(ret == 0);
 
@@ -27,6 +28,18 @@ si::VideoMode::VideoMode()
 
     ret = Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 2048);
     SDL_assert(ret == 0);
+
+    backgroundSurf.set("media/images/background.png");
+    backgroundTex.set(renderer, backgroundSurf);
+
+    uiFont.init(0, 0, "media/font/GameBoyFont.ttf", 24, SDL_Color{.r = 255, .g = 255, .b = 255, .a = 255},
+                "This is a test", renderer);
+
+    sound.set("media/audio/jump.wav");
+    sound.play();
+
+    music.set("media/audio/music.mp3");
+    music.play(0);
 }
 
 si::VideoMode::~VideoMode()
@@ -51,6 +64,8 @@ bool si::VideoMode::Update()
         }
     }
     SDL_RenderClear(renderer);
+    SDL_RenderCopy(renderer, backgroundTex.get(), nullptr, nullptr);
+    uiFont.draw();
     SDL_RenderPresent(renderer);
     SDL_Delay(16);
 
