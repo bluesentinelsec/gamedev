@@ -11,6 +11,7 @@
 #include "sound.hpp"
 #include "surface.hpp"
 #include "texture.hpp"
+#include "logger.hpp"
 
 namespace si
 {

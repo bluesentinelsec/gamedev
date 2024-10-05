@@ -2,13 +2,27 @@
 #include "videomode.hpp"
 #include <cstdlib>
 
+#ifdef __EMSCRIPTEN__
+#include <emscripten.h>
+#endif
+
+static si::VideoMode vm;
+
+void tickFrame()
+{
+    vm.Update();
+}
+
 int main(int argc, char *argv[])
 {
     tson::Tileson t;
-    si::VideoMode vm;
+#ifdef __EMSCRIPTEN__
+    emscripten_set_main_loop(tickFrame, 60, 1);
+#else
     while (vm.Update())
     {
     };
+#endif
     return EXIT_SUCCESS;
 }
 /*

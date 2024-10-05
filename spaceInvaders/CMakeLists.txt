@@ -28,6 +28,7 @@ set(SOURCES src/main.cpp
         src/font.hpp
         src/sound.hpp
         src/music.hpp
+        src/logger.hpp
 )
 add_executable(SpaceInvaders ${SOURCES})
 
