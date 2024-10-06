@@ -61,17 +61,19 @@ si::VideoMode::VideoMode()
         LOG_FATAL("unable to initialize SDL2_mixer: %s\n", SDL_GetError());
     }
 
-    backgroundSurf.set("media/images/background.png");
-    backgroundTex.set(renderer, backgroundSurf);
+    // backgroundSurf.set("media/images/background.png");
+    // backgroundTex.set(renderer, backgroundSurf);
 
-    uiFont.init(0, 0, "media/font/GameBoyFont.ttf", 24, SDL_Color{.r = 255, .g = 255, .b = 255, .a = 255},
-                "This is a test", renderer);
+    // uiFont.init(0, 0, "media/font/GameBoyFont.ttf", 24, SDL_Color{.r = 255, .g = 255, .b = 255, .a = 255},
+    //             "This is a test", renderer);
 
-    sound.set("media/audio/jump.wav");
-    sound.play();
+    // sound.set("media/audio/jump.wav");
+    // sound.play();
 
-    music.set("media/audio/music.mp3");
-    music.play(0);
+    // music.set("media/audio/music.mp3");
+    // music.play(0);
+
+    currentScene = SceneFactory::CreateScene(SceneType::TitleScene);
 }
 
 si::VideoMode::~VideoMode()
@@ -87,19 +89,7 @@ si::VideoMode::~VideoMode()
 bool si::VideoMode::Update()
 {
     SDL_Event event;
-    while (SDL_PollEvent(&event))
-    {
-        if (event.type == SDL_QUIT)
-        {
-            isRunning = false;
-            break;
-        }
-    }
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-    SDL_RenderClear(renderer);
-    SDL_RenderCopy(renderer, backgroundTex.get(), nullptr, nullptr);
-    uiFont.draw();
-    SDL_RenderPresent(renderer);
-
+    isRunning = currentScene->Update(0, &event);
+    currentScene->Render(renderer);
     return isRunning;
 }

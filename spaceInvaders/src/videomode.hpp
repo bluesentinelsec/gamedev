@@ -5,16 +5,23 @@
 #include <SDL_mixer.h>
 #include <SDL_ttf.h>
 
+#include "eventManager.hpp"
 #include "font.hpp"
 #include "globals.hpp"
+#include "logger.hpp"
 #include "music.hpp"
+#include "sceneFactory.hpp"
+#include "sceneInterface.hpp"
 #include "sound.hpp"
 #include "surface.hpp"
 #include "texture.hpp"
-#include "logger.hpp"
+
+#include <memory>
 
 namespace si
 {
+static std::shared_ptr<SceneInterface> currentScene = nullptr;
+
 class VideoMode
 {
   public:

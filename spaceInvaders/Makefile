@@ -1,6 +1,6 @@
 .PHONY: build
 
-SOURCES = src/main.cpp src/videomode.cpp
+SOURCES = src/main.cpp src/videomode.cpp src/titleScene.cpp
 
 dev:
 	cmake -B build -S . -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
