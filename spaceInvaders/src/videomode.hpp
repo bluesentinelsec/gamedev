@@ -25,7 +25,7 @@ static std::shared_ptr<SceneInterface> currentScene = nullptr;
 class VideoMode
 {
   public:
-    VideoMode();
+    VideoMode(SceneType firstScene);
     ~VideoMode();
     bool Update();
 
@@ -34,10 +34,5 @@ class VideoMode
     SDL_Renderer *renderer = nullptr;
     bool isRunning = true;
 
-    sdlSurface backgroundSurf;
-    sdlTexture backgroundTex;
-    sdlFont uiFont;
-    Sound sound;
-    Music music;
 };
 }; // namespace si

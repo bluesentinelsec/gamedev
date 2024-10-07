@@ -1,6 +1,6 @@
 #include "videomode.hpp"
 
-si::VideoMode::VideoMode()
+si::VideoMode::VideoMode(SceneType firstScene)
 {
 #ifdef __EMSCRIPTEN__
     auto initFlags = SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_EVENTS | SDL_INIT_AUDIO;
@@ -61,19 +61,7 @@ si::VideoMode::VideoMode()
         LOG_FATAL("unable to initialize SDL2_mixer: %s\n", SDL_GetError());
     }
 
-    // backgroundSurf.set("media/images/background.png");
-    // backgroundTex.set(renderer, backgroundSurf);
-
-    // uiFont.init(0, 0, "media/font/GameBoyFont.ttf", 24, SDL_Color{.r = 255, .g = 255, .b = 255, .a = 255},
-    //             "This is a test", renderer);
-
-    // sound.set("media/audio/jump.wav");
-    // sound.play();
-
-    // music.set("media/audio/music.mp3");
-    // music.play(0);
-
-    currentScene = SceneFactory::CreateScene(SceneType::TitleScene);
+    currentScene = SceneFactory::CreateScene(firstScene);
 }
 
 si::VideoMode::~VideoMode()

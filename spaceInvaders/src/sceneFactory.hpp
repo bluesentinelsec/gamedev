@@ -5,6 +5,7 @@
 #include <memory>
 
 // [!] Include concrete scene implementations here
+#include "gameplayScene.hpp"
 #include "titleScene.hpp"
 
 namespace si
@@ -14,8 +15,6 @@ enum class SceneType
 {
     TitleScene,
     GameplayScene,
-    WinScene,
-    LoseScene,
     // [!] add additional scene types here
 };
 
@@ -30,22 +29,13 @@ class SceneFactory
         }
         else if (type == SceneType::GameplayScene)
         {
-            LOG_FATAL("scene not implemented");
-        }
-        else if (type == SceneType::WinScene)
-        {
-            LOG_FATAL("scene not implemented");
-        }
-        else if (type == SceneType::LoseScene)
-        {
-            LOG_FATAL("scene not implemented");
+            return std::make_shared<GameScene>();
         }
         else
         {
             LOG_FATAL("invalid type provided: %d\n", type);
             return nullptr;
         }
-        return nullptr;
     };
 };
 

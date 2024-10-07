@@ -38,8 +38,6 @@ class sdlFont
 
     ~sdlFont()
     {
-        SDL_assert(texture != nullptr);
-
         SDL_DestroyTexture(texture);
     };
 

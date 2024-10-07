@@ -1,28 +1,34 @@
+#include "sceneFactory.hpp"
 #include "tileson.hpp"
 #include "videomode.hpp"
 #include <cstdlib>
+#include <memory>
 
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>
 #endif
 
-static si::VideoMode vm;
+static si::VideoMode *vm = nullptr;
 
 void tickFrame()
 {
-    vm.Update();
+    vm->Update();
 }
 
 int main(int argc, char *argv[])
 {
+    //vm = new si::VideoMode(si::SceneType::TitleScene);
+    vm = new si::VideoMode(si::SceneType::GameplayScene);
+
     tson::Tileson t;
 #ifdef __EMSCRIPTEN__
     emscripten_set_main_loop(tickFrame, 60, 1);
 #else
-    while (vm.Update())
+    while (vm->Update())
     {
     };
 #endif
+    delete vm;
     return EXIT_SUCCESS;
 }
 /*
