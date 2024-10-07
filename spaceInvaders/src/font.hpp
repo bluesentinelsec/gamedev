@@ -7,10 +7,10 @@
 
 namespace si
 {
-class sdlFont
+class Font
 {
   public:
-    sdlFont() = default;
+    Font() = default;
 
     void init(int xPos, int yPos, const std::string &aPath, int aSize, SDL_Color aColor, const std::string &message,
               SDL_Renderer *ren)
@@ -36,7 +36,7 @@ class sdlFont
         TTF_CloseFont(font);
     }
 
-    ~sdlFont()
+    ~Font()
     {
         SDL_DestroyTexture(texture);
     };

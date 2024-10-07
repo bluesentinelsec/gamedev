@@ -7,26 +7,26 @@
 namespace si
 {
 
-class sdlTexture
+class Texture
 {
   public:
-    sdlTexture() {};
+    Texture() {};
 
     // Constructor creates a new SDL_Texture
-    sdlTexture(SDL_Renderer *renderer, const sdlSurface &surf)
+    Texture(SDL_Renderer *renderer, const sdlSurface &surf)
     {
         m_texture = SDL_CreateTextureFromSurface(renderer, surf.get());
         SDL_assert(m_texture != nullptr);
     }
 
     // Move constructor
-    sdlTexture(sdlTexture &&other) noexcept : m_texture(other.m_texture)
+    Texture(Texture &&other) noexcept : m_texture(other.m_texture)
     {
         other.m_texture = nullptr;
     }
 
     // Move assignment
-    sdlTexture &operator=(sdlTexture &&other) noexcept
+    Texture &operator=(Texture &&other) noexcept
     {
         if (this != &other)
         {
@@ -38,14 +38,14 @@ class sdlTexture
     }
 
     // Destructor frees the SDL_Texture
-    ~sdlTexture()
+    ~Texture()
     {
         SDL_DestroyTexture(m_texture);
     }
 
     // Copy operations are deleted to prevent accidental copies
-    sdlTexture(const sdlTexture &) = delete;
-    sdlTexture &operator=(const sdlTexture &) = delete;
+    Texture(const Texture &) = delete;
+    Texture &operator=(const Texture &) = delete;
 
     // Get the raw SDL_Texture pointer
     SDL_Texture *get() const noexcept
