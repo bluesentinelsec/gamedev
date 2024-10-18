@@ -16,6 +16,7 @@
 #include "surface.hpp"
 #include "texture.hpp"
 
+#include <chrono>
 #include <memory>
 
 namespace si
@@ -33,6 +34,5 @@ class VideoMode
     SDL_Window *window = nullptr;
     SDL_Renderer *renderer = nullptr;
     bool isRunning = true;
-
 };
 }; // namespace si

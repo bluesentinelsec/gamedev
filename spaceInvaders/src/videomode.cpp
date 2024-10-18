@@ -79,9 +79,29 @@ si::VideoMode::~VideoMode()
 
 bool si::VideoMode::Update()
 {
+    const Uint32 FRAME_TARGET_TIME = 1000 / 60;
+
+    // Calculate delta time
+    static auto lastTime = std::chrono::steady_clock::now();
+    auto currentTime = std::chrono::steady_clock::now();
+    float deltaTime = std::chrono::duration<float>(currentTime - lastTime).count();
+    lastTime = currentTime;
+
+    Uint32 frameTime = SDL_GetTicks() - SDL_GetTicks(); // Reset frame start time
+
     SDL_Event event;
-    isRunning = currentScene->Update(0, &event);
+    isRunning = currentScene->Update(deltaTime, &event);
     currentScene->Render(renderer);
+
+    // Calculate time taken for this frame
+    frameTime = SDL_GetTicks() - frameTime;
+
+    // If frame finished early, delay to reach 60 FPS
+    if (frameTime < FRAME_TARGET_TIME)
+    {
+        SDL_Delay(FRAME_TARGET_TIME - frameTime);
+    }
+
     return isRunning;
 }
 

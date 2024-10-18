@@ -29,6 +29,7 @@ bool si::GameScene::Update(float deltaTime, SDL_Event *event)
         }
 #endif
     }
+    LOG_INFO("Delta time: %f\n", deltaTime);
     return true;
 }
 
