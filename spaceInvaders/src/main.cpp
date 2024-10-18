@@ -2,7 +2,6 @@
 #include "tileson.hpp"
 #include "videomode.hpp"
 #include <cstdlib>
-#include <memory>
 
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>
@@ -35,8 +34,7 @@ int main(int argc, char *argv[])
  * scratch pad:
  * need to add keyboard input, for testing
  * need to package macOS release build
- * need to setup web build
- * make scenes in tiled (title, game, win/lose)
+ * make scenes in tiled (title, game)
  * add tiled parser
  * add scenes
  * add actors (player, aliens, lasers) - keep it primitive for momentum

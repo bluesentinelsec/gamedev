@@ -1,5 +1,6 @@
 #pragma once
 
+#include "eventManager.hpp"
 #include "sceneInterface.hpp"
 #include <SDL.h>
 #include <memory>

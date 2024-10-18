@@ -12,7 +12,22 @@ bool si::TitleScene::Update(float deltaTime, SDL_Event *event)
         {
             return false;
         }
+#ifdef SI_Debug
+        if (event->type == SDL_KEYUP)
+        {
+            if (event->key.keysym.sym == SDLK_0)
+            {
+                std::string gameplayScene = "GAMEPLAY_SCENE";
+                EventHandler::getInstance().emit("CHANGE_SCENE", (void *)gameplayScene.c_str());
+            }
+            if (event->key.keysym.sym == SDLK_ESCAPE)
+            {
+                return false;
+            }
+        }
+#endif
     }
+
     return true;
 }
 

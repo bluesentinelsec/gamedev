@@ -1,5 +1,7 @@
 #include "videomode.hpp"
 
+static void onChangeScene(void *args);
+
 si::VideoMode::VideoMode(SceneType firstScene)
 {
 #ifdef __EMSCRIPTEN__
@@ -62,6 +64,7 @@ si::VideoMode::VideoMode(SceneType firstScene)
     }
 
     currentScene = SceneFactory::CreateScene(firstScene);
+    EventHandler::getInstance().subscribe("CHANGE_SCENE", onChangeScene);
 }
 
 si::VideoMode::~VideoMode()
@@ -80,4 +83,21 @@ bool si::VideoMode::Update()
     isRunning = currentScene->Update(0, &event);
     currentScene->Render(renderer);
     return isRunning;
+}
+
+static void onChangeScene(void *args)
+{
+    std::string sceneToLoad = (char *)(args);
+    if (sceneToLoad == "TITLE_SCENE")
+    {
+        si::currentScene = si::SceneFactory::CreateScene(si::SceneType::TitleScene);
+    }
+    else if (sceneToLoad == "GAMEPLAY_SCENE")
+    {
+        si::currentScene = si::SceneFactory::CreateScene(si::SceneType::GameplayScene);
+    }
+    else
+    {
+        LOG_FATAL("invalid scene: %s\n", sceneToLoad.c_str());
+    }
 }

@@ -9,6 +9,7 @@ if (CMAKE_BUILD_TYPE MATCHES "Release")
     add_definitions(-DNDEBUG)
 else ()
     message(STATUS "Building for development")
+    add_definitions(-DSI_Debug)
 endif ()
 
 add_subdirectory(external/SDL)
