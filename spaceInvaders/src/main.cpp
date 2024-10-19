@@ -1,5 +1,4 @@
 #include "sceneFactory.hpp"
-#include "tileson.hpp"
 #include "videomode.hpp"
 #include <cstdlib>
 
@@ -16,10 +15,9 @@ void tickFrame()
 
 int main(int argc, char *argv[])
 {
-    //vm = new si::VideoMode(si::SceneType::TitleScene);
-    vm = new si::VideoMode(si::SceneType::GameplayScene);
+    vm = new si::VideoMode(si::SceneType::TitleScene);
+    //vm = new si::VideoMode(si::SceneType::GameplayScene);
 
-    tson::Tileson t;
 #ifdef __EMSCRIPTEN__
     emscripten_set_main_loop(tickFrame, 60, 1);
 #else

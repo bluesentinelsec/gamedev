@@ -1,0 +1,151 @@
+{ "compressionlevel":-1,
+ "height":18,
+ "infinite":false,
+ "layers":[
+        {
+         "data":[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+         "height":18,
+         "id":1,
+         "name":"background",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":32,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":2,
+         "name":"ui",
+         "objects":[
+                {
+                 "height":120,
+                 "id":1,
+                 "name":"label_title",
+                 "rotation":0,
+                 "text":
+                    {
+                     "color":"#223719",
+                     "fontfamily":"Nouveau IBM",
+                     "pixelsize":144,
+                     "text":"SPACE INVADERS",
+                     "wrap":true
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":1120,
+                 "x":120,
+                 "y":80
+                }, 
+                {
+                 "height":80,
+                 "id":2,
+                 "name":"label_start",
+                 "rotation":0,
+                 "text":
+                    {
+                     "color":"#223719",
+                     "fontfamily":"Nouveau IBM",
+                     "pixelsize":72,
+                     "text":"START",
+                     "wrap":true
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":200,
+                 "x":520,
+                 "y":400
+                }, 
+                {
+                 "height":80,
+                 "id":3,
+                 "name":"label_exit",
+                 "rotation":0,
+                 "text":
+                    {
+                     "color":"#223719",
+                     "fontfamily":"Nouveau IBM",
+                     "pixelsize":72,
+                     "text":"EXIT",
+                     "wrap":true
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":160,
+                 "x":520,
+                 "y":520
+                }, 
+                {
+                 "gid":5,
+                 "height":40,
+                 "id":14,
+                 "name":"cursor",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":40,
+                 "x":455.641025641026,
+                 "y":450.769230769231
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }],
+ "nextlayerid":3,
+ "nextobjectid":15,
+ "orientation":"orthogonal",
+ "renderorder":"right-down",
+ "tiledversion":"1.11.0",
+ "tileheight":40,
+ "tilesets":[
+        {
+         "columns":4,
+         "firstgid":1,
+         "image":"..\/images\/background_tiles.png",
+         "imageheight":40,
+         "imagewidth":160,
+         "margin":0,
+         "name":"background_tiles",
+         "spacing":0,
+         "tilecount":4,
+         "tileheight":40,
+         "tilewidth":40
+        }, 
+        {
+         "columns":1,
+         "firstgid":5,
+         "image":"..\/images\/cursor.png",
+         "imageheight":40,
+         "imagewidth":40,
+         "margin":0,
+         "name":"cursor",
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":40,
+         "tilewidth":40
+        }],
+ "tilewidth":40,
+ "type":"map",
+ "version":"1.10",
+ "width":32
+}

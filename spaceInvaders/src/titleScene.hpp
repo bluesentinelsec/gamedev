@@ -1,9 +1,11 @@
 #pragma once
 
 #include "eventManager.hpp"
+#include "logger.hpp"
 #include "sceneInterface.hpp"
 #include <SDL.h>
 #include <memory>
+#include <tileson.hpp>
 
 namespace si
 {
@@ -19,6 +21,8 @@ class TitleScene : public SceneInterface
     void Render(SDL_Renderer *renderer) override;
 
   private:
+    void createBackgroundLayer(tson::Layer&);
+    void createUILayer(tson::Layer&);
 };
 
 } // namespace si
