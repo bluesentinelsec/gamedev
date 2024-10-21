@@ -31,14 +31,14 @@ si::VideoMode::VideoMode(SceneType firstScene)
         LOG_FATAL("unable to create SDL window: %s\n", SDL_GetError());
     }
 
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED);
-    if (renderer == nullptr)
+    globalRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED);
+    if (globalRenderer == nullptr)
     {
         LOG_FATAL("unable to create SDL renderer: %s\n", SDL_GetError());
     }
 
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
-    ret = SDL_RenderSetLogicalSize(renderer, si::Globals::screenWidth, si::Globals::screenHeight);
+    ret = SDL_RenderSetLogicalSize(globalRenderer, si::Globals::screenWidth, si::Globals::screenHeight);
     if (ret != 0)
     {
         LOG_FATAL("unable to set render logical size: %s\n", SDL_GetError());
@@ -63,7 +63,7 @@ si::VideoMode::VideoMode(SceneType firstScene)
         LOG_FATAL("unable to initialize SDL2_mixer: %s\n", SDL_GetError());
     }
 
-    currentScene = SceneFactory::CreateScene(firstScene);
+    currentScene = SceneFactory::CreateScene(firstScene, globalRenderer);
     EventHandler::getInstance().subscribe("CHANGE_SCENE", onChangeScene);
 }
 
@@ -72,7 +72,7 @@ si::VideoMode::~VideoMode()
     Mix_CloseAudio();
     TTF_Quit();
     IMG_Quit();
-    SDL_DestroyRenderer(renderer);
+    SDL_DestroyRenderer(globalRenderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
 }
@@ -91,7 +91,7 @@ bool si::VideoMode::Update()
 
     SDL_Event event;
     isRunning = currentScene->Update(deltaTime, &event);
-    currentScene->Render(renderer);
+    currentScene->Render(globalRenderer);
 
     // Calculate time taken for this frame
     frameTime = SDL_GetTicks() - frameTime;
@@ -110,11 +110,11 @@ static void onChangeScene(void *args)
     std::string sceneToLoad = (char *)(args);
     if (sceneToLoad == "TITLE_SCENE")
     {
-        si::currentScene = si::SceneFactory::CreateScene(si::SceneType::TitleScene);
+        si::currentScene = si::SceneFactory::CreateScene(si::SceneType::TitleScene, si::globalRenderer);
     }
     else if (sceneToLoad == "GAMEPLAY_SCENE")
     {
-        si::currentScene = si::SceneFactory::CreateScene(si::SceneType::GameplayScene);
+        si::currentScene = si::SceneFactory::CreateScene(si::SceneType::GameplayScene, si::globalRenderer);
     }
     else
     {

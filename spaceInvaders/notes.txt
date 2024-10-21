@@ -1,0 +1,7 @@
+Things to improve in the next iteration:
+
+- make type names more consistent (sdlTexture vs Texture)
+- make the namespace generic (game)
+- actors should have the renderer in the constructor
+- add CI/CD jobs for all supported platforms
+- use valgrind and address sanitzer to mitigate memory leaks

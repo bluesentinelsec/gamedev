@@ -1,7 +1,8 @@
 #include "titleScene.hpp"
 
-si::TitleScene::TitleScene()
+si::TitleScene::TitleScene(SDL_Renderer *renderer)
 {
+    aRenderer = renderer;
     tson::Tileson t;
     std::unique_ptr<tson::Map> map = t.parse("media/maps/title_screen.tmj");
     for (auto &layer : map->getLayers())
@@ -53,23 +54,29 @@ void si::TitleScene::Render(SDL_Renderer *renderer)
 {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
+
+    for (const auto &eachTile : BackgroundTiles)
+    {
+        eachTile->Render(renderer);
+    }
+    labelTitle.draw();
+    labelStart.draw();
+    labelExit.draw();
+
     SDL_RenderPresent(renderer);
 }
 
 void si::TitleScene::createBackgroundLayer(tson::Layer &layer)
 {
-    for (int y = 0; y < layer.getSize().y; ++y)
+    const auto &tileData = layer.getTileData();
+    for (const auto &[position, tile] : tileData)
     {
-        for (int x = 0; x < layer.getSize().x; ++x)
+        int x, y;
+        std::tie(x, y) = position;
+        if (tile && tile->getId() != 0)
         {
-            // Get the tile ID at this position
-            tson::Tile *tile = layer.getTileData(x, y);
-            if (tile != nullptr)
-            {
-                std::cout << "Tile at (" << x << "," << y << "): " << tile->getId() << std::endl;
-                // TODO: create background tile object
-                // append to a list
-            }
+            auto aBackgroundTile = std::make_shared<BackgroundTile>(x * 40, y * 40, aRenderer);
+            BackgroundTiles.push_back(aBackgroundTile);
         }
     }
 }
@@ -78,11 +85,32 @@ void si::TitleScene::createUILayer(tson::Layer &layer)
 {
     for (auto &object : layer.getObjects())
     {
-        // Print object properties
-        std::cout << "Object Name: " << object.getName() << std::endl;
-        std::cout << "Object Type: " << object.getType() << std::endl;
-        std::cout << "Position: (" << object.getPosition().x << ", " << object.getPosition().y << ")" << std::endl;
-        std::cout << "Size: (" << object.getSize().x << ", " << object.getSize().y << ")" << std::endl;
-        // TODO: create UI objects
-   }
+        const std::string &objName = object.getName();
+        if (objName == "label_title")
+        {
+            auto pos = object.getPosition();
+            SDL_Color color = {.r = 35, .g = 55, .b = 25, .a = 255};
+            labelTitle.init(pos.x, pos.y, "media/font/space_invaders.ttf", 144, color, "SPACE INVADERS", aRenderer);
+        }
+        else if (objName == "label_start")
+        {
+            auto pos = object.getPosition();
+            SDL_Color color = {.r = 35, .g = 55, .b = 25, .a = 255};
+            labelStart.init(pos.x, pos.y, "media/font/space_invaders.ttf", 72, color, "START", aRenderer);
+        }
+        else if (objName == "label_exit")
+        {
+            auto pos = object.getPosition();
+            SDL_Color color = {.r = 35, .g = 55, .b = 25, .a = 255};
+            labelExit.init(pos.x, pos.y, "media/font/space_invaders.ttf", 72, color, "EXIT", aRenderer);
+        }
+        else if (objName == "cursor")
+        {
+            // TODO: create object
+        }
+        else
+        {
+            LOG_FATAL("unhandled object: %s\n", objName.c_str());
+        }
+    }
 }

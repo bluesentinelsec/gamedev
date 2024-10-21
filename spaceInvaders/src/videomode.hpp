@@ -22,6 +22,8 @@
 namespace si
 {
 static std::shared_ptr<SceneInterface> currentScene = nullptr;
+static SDL_Window *window = nullptr;
+static SDL_Renderer *globalRenderer = nullptr;
 
 class VideoMode
 {
@@ -31,8 +33,6 @@ class VideoMode
     bool Update();
 
   private:
-    SDL_Window *window = nullptr;
-    SDL_Renderer *renderer = nullptr;
     bool isRunning = true;
 };
 }; // namespace si

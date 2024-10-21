@@ -35,6 +35,7 @@ set(SOURCES src/main.cpp
         src/sceneFactory.hpp
         src/titleScene.cpp
         src/gameplayScene.cpp
+        src/backgroundTile.cpp
 )
 add_executable(SpaceInvaders ${SOURCES})
 

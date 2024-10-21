@@ -21,11 +21,11 @@ enum class SceneType
 class SceneFactory
 {
   public:
-    static std::shared_ptr<SceneInterface> CreateScene(SceneType type)
+    static std::shared_ptr<SceneInterface> CreateScene(SceneType type, SDL_Renderer *renderer)
     {
         if (type == SceneType::TitleScene)
         {
-            return std::make_shared<TitleScene>();
+            return std::make_shared<TitleScene>(renderer);
         }
         else if (type == SceneType::GameplayScene)
         {
